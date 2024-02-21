@@ -2,4 +2,5 @@
 <resources>
     <item name="pager_id" type="id" />
     <item name="banner_indicator_id" type="id" />
+    <item name="fragment_focused_view_id" type="id"/>
 </resources>

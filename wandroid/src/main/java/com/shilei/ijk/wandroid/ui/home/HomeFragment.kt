@@ -1,18 +1,17 @@
 package com.shilei.ijk.wandroid.ui.home
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.shilei.ijk.common.ui.BaseFragment
-import com.shilei.ijk.wandroid.R
+import com.shilei.ijk.common.ui.fragment.BindingFragment
+import com.shilei.ijk.wandroid.databinding.ItemHomeArticalListBinding
 import com.shilei.ijk.wandroid.ui.home.placeholder.PlaceholderContent
 
-class HomeFragment : BaseFragment() {
+class HomeFragment : BindingFragment<ItemHomeArticalListBinding>() {
     private var columnCount = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,12 +21,15 @@ class HomeFragment : BaseFragment() {
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.item_home_artical_list, container, false)
+    override fun getViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ): ItemHomeArticalListBinding {
+        return ItemHomeArticalListBinding.inflate(inflater, container, false)
+    }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         // Set the adapter
         if (view is RecyclerView) {
             with(view) {
@@ -38,7 +40,6 @@ class HomeFragment : BaseFragment() {
                 adapter = ArticleAdapter(PlaceholderContent.ITEMS)
             }
         }
-        return view
     }
 
     companion object {

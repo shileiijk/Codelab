@@ -3,8 +3,11 @@ package com.shilei.ijk.common.util
 import android.content.Context
 import android.util.Property
 import android.util.TypedValue
+import android.view.KeyEvent
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import java.io.Closeable
 import java.io.IOException
 
@@ -93,3 +96,26 @@ val VIEW_HEIGHT: Property<View, Int> =
             view.layoutParams = param
         }
     }
+
+fun FragmentActivity.addFragment(fragment: Fragment) {
+    supportFragmentManager.beginTransaction().add(fragment, null).commit()
+}
+
+fun FragmentActivity.replaceFragment(containerId: Int, fragment: Fragment, tag: String? = null) {
+    supportFragmentManager.beginTransaction().replace(containerId, fragment, tag).commitNow()
+}
+
+private var lastClickTime = 0L
+fun View.onClick(interval: Long = 500L, onClick: (View) -> Unit) {
+    setOnClickListener { view ->
+        val currentTime = System.currentTimeMillis()
+        if (currentTime - lastClickTime > interval) {
+            lastClickTime = currentTime
+            onClick(view)
+        }
+    }
+}
+
+fun KeyEvent.toShortString(): String {
+    return "KeyEvent { action: $action, keyCode: $keyCode }"
+}

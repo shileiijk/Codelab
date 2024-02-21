@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.shilei.ijk.codelab"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.shilei.ijk.codelab"
@@ -53,6 +53,7 @@ dependencies {
     implementation(Deps.appcompat)
     implementation(Deps.material)
     implementation(Deps.constraintlayout)
+//    implementation("androidx.activity:activity:1.9.0")
     testImplementation(Deps.junit)
     androidTestImplementation(Deps.ext_junit)
     androidTestImplementation(Deps.espresso)

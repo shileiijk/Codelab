@@ -1,11 +1,20 @@
 package com.shilei.ijk.codelab
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
+import com.shilei.ijk.codelab.databinding.ActivityMainBinding
+import com.shilei.ijk.common.ui.BaseActivity
 
-class MainActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+class MainActivity : BaseActivity<ActivityMainBinding>() {
+    override fun getLayoutId(): Int {
+        return R.layout.activity_main
+    }
+
+    override fun getViewBinding(): ActivityMainBinding {
+        return ActivityMainBinding.inflate(layoutInflater)
+    }
+
+    private var isEnabled = true
+
+    override fun handleOnBackPress(): Boolean {
+        return super.handleOnBackPress()
     }
 }

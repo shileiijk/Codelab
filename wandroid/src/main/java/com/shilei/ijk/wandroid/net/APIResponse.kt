@@ -7,7 +7,7 @@ import io.reactivex.rxjava3.disposables.Disposable
 // RxJava 自定义 操作符 简单的
 // 拦截 自定义操作符，目的: 包装Bean 给拆成两份  如果成功  data--》UI     如果失败  meg--》UI
 abstract class APIResponse<T>() // 主构造函数
-    : Observer<BaseResponse<T>>{
+    : Observer<BaseResponse<T>> {
 
     private var isShow: Boolean = true
 
@@ -16,9 +16,9 @@ abstract class APIResponse<T>() // 主构造函数
 //        this.isShow = isShow
 //    }
 
-    abstract fun success(data: T ?)
+    abstract fun success(data: T?)
 
-    abstract fun failure(errorMsg: String ? )
+    abstract fun failure(errorMsg: String?)
 
     // todo +++++++++++++++++++++++++++++++++  RxJava 相关的函数
     // 起点 分发的时候

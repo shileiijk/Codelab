@@ -5,7 +5,7 @@ import timber.log.Timber
 
 class DebugLogTree : Timber.DebugTree() {
     override fun isLoggable(tag: String?, priority: Int): Boolean {
-        if (isDebuggable) {
+        if (DEBUGGABLE) {
             return true
         }
         return priority > Log.DEBUG
@@ -16,7 +16,7 @@ class DebugLogTree : Timber.DebugTree() {
     }
 
     companion object {
-        private const val TAG = "Lab+: "
-        private const val isDebuggable = true
+        private const val TAG = "LEI-SHE-"
+        private const val DEBUGGABLE = true
     }
 }

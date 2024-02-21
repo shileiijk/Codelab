@@ -2,46 +2,53 @@ package com.shilei.ijk.common.ui
 
 import android.content.res.Configuration
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.view.KeyEvent
+import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
+import com.shilei.ijk.common.ui.fragment.support.FragmentStackManager
 import timber.log.Timber
 
-abstract class BaseActivity<T : ViewBinding> : AppCompatActivity() {
-    protected lateinit var binding: T
+abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
+    protected lateinit var binding: VB
 
-    abstract fun getBinding(): T
+    private val onBackPressedCallback = object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            Timber.d("onBackPressed")
+            if (FragmentStackManager.stackNotEmpty()) {
+                val currentFragment = FragmentStackManager.getCurrentFragment()
+                if (currentFragment?.onBackPressed() == true) {
+                    return
+                }
+                FragmentStackManager.popFragment()
+                return
+            }
 
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
+            if (isEnabled) {
+                isEnabled = false
+                Toast.makeText(this@BaseActivity, "再按一次退出", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    abstract fun getLayoutId(): Int
+
+    abstract fun getViewBinding(): VB
+
+    open fun handleOnBackPress(): Boolean = false
+
+    final override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         Timber.d("onCreate")
+        binding = getViewBinding()
         setContentView(binding.root)
+        onBackPressedDispatcher.addCallback(onBackPressedCallback)
+        onActivityCreated()
     }
 
-    override fun onStart() {
-        super.onStart()
-        Timber.d("onStart")
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Timber.d("onResume")
-    }
-
-    override fun onPause() {
-        super.onPause()
-        Timber.d("onPause")
-    }
-
-    override fun onStop() {
-        super.onStop()
-        Timber.d("onStop")
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Timber.d("onDestroy")
+    open fun onActivityCreated() {
+        Timber.d("onActivityCreated")
     }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
@@ -53,4 +60,16 @@ abstract class BaseActivity<T : ViewBinding> : AppCompatActivity() {
         super.onConfigurationChanged(newConfig)
         Timber.d("onConfigurationChanged")
     }
+
+//    override fun onBackPressed() {
+//        if (FragmentStackManager.stackNotEmpty()) {
+//            val currentFragment = FragmentStackManager.getCurrentFragment()
+//            if (currentFragment?.onBackPressed() == true) {
+//                return
+//            }
+//            FragmentStackManager.popFragment()
+//            return
+//        }
+//        super.onBackPressed()
+//    }
 }

@@ -37,6 +37,7 @@ dependencies {
     implementation(Deps.appcompat)
     implementation(Deps.material)
     implementation("androidx.databinding:viewbinding:8.2.1")
+    implementation("androidx.databinding:databinding-runtime:8.4.2")
     testImplementation(Deps.junit)
     androidTestImplementation(Deps.ext_junit)
     androidTestImplementation(Deps.espresso)
