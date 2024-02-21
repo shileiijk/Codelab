@@ -9,6 +9,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Codelab">
         <activity
+            android:name=".player.ExoPlayerActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

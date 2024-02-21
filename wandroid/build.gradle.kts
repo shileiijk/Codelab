@@ -57,6 +57,10 @@ dependencies {
     implementation(Deps.rxjava3.rxjava)
     implementation(Deps.rxjava3.rxandroid)
 
+    // co-routine
+    implementation(Deps.kotlinx.coroutines_core)
+    implementation(Deps.kotlinx.coroutines_android)
+
     // Retrofit Okhttp
     implementation(Deps.retrofit2.retrofit)
     implementation(Deps.retrofit2.adapter_rxjava3)
@@ -65,6 +69,10 @@ dependencies {
 
     // 图片加载
     implementation(Deps.glide)
+    implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("com.google.android.material:material:1.11.0")
+    implementation("androidx.activity:activity:1.8.0")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     annotationProcessor(Deps.glide_compiler)
 
     // Test
@@ -73,4 +81,9 @@ dependencies {
     androidTestImplementation(Deps.espresso)
 
     implementation(Deps.timber)
+
+    implementation(Deps.media3.media3_exoplayer)
+    implementation(Deps.media3.media3_common)
+    implementation(Deps.media3.media3_ui)
+    implementation(Deps.media3.media3_session)
 }

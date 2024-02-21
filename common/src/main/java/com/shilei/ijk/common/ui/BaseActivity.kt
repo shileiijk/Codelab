@@ -9,9 +9,9 @@ import androidx.viewbinding.ViewBinding
 import timber.log.Timber
 
 abstract class BaseActivity<T : ViewBinding> : AppCompatActivity() {
-    protected lateinit var binding: T
+    protected var binding: T = getLazyBinding()
 
-    abstract fun getBinding(): T
+    abstract fun getLazyBinding(): T
 
     override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
         super.onCreate(savedInstanceState, persistentState)

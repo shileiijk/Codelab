@@ -17,6 +17,8 @@ object Ver {
     const val view_binding = "8.1.1"
 
     const val lifecycle = "2.6.1"
+    const val coroutines_core = "1.8.0"
+    const val coroutines_android = "1.7.1"
     const val rxjava = "3.1.6"
     const val rxandroid = "3.0.2"
     const val retrofit = "2.9.0"
@@ -28,6 +30,7 @@ object Ver {
     const val stetho = "1.6.0"
     const val timber = "4.7.1"
     const val dagger = "2.16"
+    const val exo_palyer = "1.3.0"
 }
 
 object Deps {
@@ -98,6 +101,11 @@ object Deps {
         const val compiler_kapt = "androidx.lifecycle:lifecycle-compiler:${Ver.lifecycle}"
     }
 
+    object kotlinx {
+        const val coroutines_core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Ver.coroutines_core}"
+        const val coroutines_android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Ver.coroutines_android}"
+    }
+
     // Test
     const val junit = "junit:junit:${Ver.junit}"
     const val ext_junit = "androidx.test.ext:junit:${Ver.atsl_junit}"
@@ -122,6 +130,13 @@ object Deps {
         const val android_support = "com.google.dagger:dagger-android-support:${Ver.dagger}" // if you use the support libraries
         const val compiler = "com.google.dagger:dagger-compiler:${Ver.dagger}" // kapt
         const val android_processor = "com.google.dagger:dagger-android-processor:${Ver.dagger}" // kapt
+    }
+
+    object media3 {
+        const val media3_exoplayer = "androidx.media3:media3-exoplayer:${Ver.exo_palyer}"
+        const val media3_ui = "androidx.media3:media3-ui:${Ver.exo_palyer}"
+        const val media3_common = "androidx.media3:media3-common:${Ver.exo_palyer}"
+        const val media3_session = "androidx.media3:media3-session:${Ver.exo_palyer}"
     }
 
 

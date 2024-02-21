@@ -6,7 +6,7 @@ import com.shilei.ijk.common.ui.BaseActivity
 import com.shilei.ijk.wandroid.databinding.ActivityMainBinding
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
-    override fun getBinding(): ActivityMainBinding {
+    override fun getLazyBinding(): ActivityMainBinding {
         return ActivityMainBinding.inflate(layoutInflater)
     }
 
